@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Logo from '../../olx-logo.png';
 import './Signup.css';
 import { Link } from 'react-router-dom';
+import { click } from '@testing-library/user-event/dist/click';
 
 export default function Signup() {
 
@@ -16,6 +17,22 @@ export default function Signup() {
   const [email, setEmail] = useState('')
   const getEmail = (event) => {
     setEmail(event.target.value)
+  }
+
+  // create state for fetching phone
+  const [phone, setPhone] = useState('')
+  const getPhone = (event) => {
+    setPhone(event.target.value)
+  }
+
+  // create state for fetching password
+  const [password, setPassword] = useState('')
+  const getPassword = (event) => {
+    setPassword(event.target.value)
+  }
+
+  const submitForm = () => {
+    console.log(working);
   }
 
 
@@ -35,36 +52,38 @@ export default function Signup() {
             onChange={getUsername}
           />
           <br />
-          <label htmlFor="fname">Email</label>
+          <label htmlFor="email">Email</label>
           <br />
           <input
             className="input"
             type="email"
-            id="fname"
+            id="email"
             name="email"
             onChange={getEmail}
           />
           <br />
-          <label htmlFor="lname">Phone</label>
+          <label htmlFor="phone">Phone</label>
           <br />
           <input
             className="input"
             type="number"
-            id="lname"
+            id="phone"
             name="phone"
+            onChange={getPhone}
           />
           <br />
-          <label htmlFor="lname">Password</label>
+          <label htmlFor="password">Password</label>
           <br />
           <input
             className="input"
             type="password"
-            id="lname"
+            id="password"
             name="password"
+            onChange={getPassword}
           />
           <br />
           <br />
-          <button>Signup</button>
+          <button onClick={submitForm}>Signup</button>
         </form>
         <div className="d-flex gap-3 m-2">
           <span>Have account ?</span><Link to='/login' className='link-item text-primary'>Login</Link>
