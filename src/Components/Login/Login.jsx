@@ -2,6 +2,7 @@ import React from 'react';
 
 import Logo from '../../olx-logo.png';
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -32,7 +33,7 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
-        <a>Signup</a>
+        <Link to='/signup' > Sign Up </Link>
       </div>
     </div>
   );

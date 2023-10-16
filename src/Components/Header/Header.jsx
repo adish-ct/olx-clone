@@ -6,6 +6,7 @@ import Search from '../../assets/Search';
 import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
+import { Link } from 'react-router-dom';
 function Header() {
   return (
     <div className="headerParentDiv">
@@ -34,7 +35,7 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-          <span>Login</span>
+          <Link>Login</Link>
           <hr />
         </div>
 
