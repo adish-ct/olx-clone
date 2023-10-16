@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Logo from '../../olx-logo.png';
 import './Signup.css';
 import { Link } from 'react-router-dom';
 import { click } from '@testing-library/user-event/dist/click';
+import { FirebaseContext } from '../../Store/FirebaseContext';
+
 
 export default function Signup() {
+
+  const { firebase } = useContext(FirebaseContext)
 
   // create state for fetching username
   const [username, setUsername] = useState('')
@@ -31,8 +35,9 @@ export default function Signup() {
     setPassword(event.target.value)
   }
 
-  const submitForm = () => {
-    console.log(working);
+  const submitForm = (e) => {
+    e.preventDefault()
+    console.log(firebase);
   }
 
 
