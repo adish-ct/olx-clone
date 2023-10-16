@@ -8,7 +8,7 @@ function Login() {
   return (
     <div>
       <div className="loginParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img width="200px" height="200px" src={Logo} />
         <form>
           <label htmlFor="fname">Email</label>
           <br />

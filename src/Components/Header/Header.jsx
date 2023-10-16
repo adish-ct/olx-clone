@@ -7,6 +7,7 @@ import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
 import { Link } from 'react-router-dom';
+import { BiUserCircle } from 'react-icons/bi';
 function Header() {
   return (
     <div className="headerParentDiv">
@@ -34,9 +35,9 @@ function Header() {
           <span> ENGLISH </span>
           <Arrow></Arrow>
         </div>
-        <div className="loginPage">
-          <Link>Login</Link>
-          <hr />
+        <div className="loginPage ">
+          <Link to='/login' className='link-item' > <span><BiUserCircle className='user-logo' /></span> <span>Login</span></Link>
+      
         </div>
 
         <div className="sellMenu">

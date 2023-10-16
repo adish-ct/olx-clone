@@ -94,9 +94,6 @@
   margin-right: 5px;
 }
 
-.language svg {
-}
-
 .span {
   text-decoration: none;
   font-size: 16px;
@@ -112,7 +109,7 @@
   height: 2px;
 }
 
-.loginPage a{
+.loginPage a {
   text-decoration: none;
 }
 
@@ -148,11 +145,26 @@
   color: #002f34;
 }
 
-/* .sellMenu .sellMenuContent svg {
-  align-items: center;
-} */
 .sellMenu .sellMenuContent span {
   margin-left: 5px;
+}
+
+.link-item {
+  display: flex;
+  text-decoration: none;
+  text-decoration-style: none;
+  color: rgb(63, 61, 61);
+  gap: 2px;
+  font-weight: 600;
+}
+
+.link-item:hover {
+  color: rgb(183, 98, 8);
+  border-bottom: 3px solid rgb(197, 196, 196);
+}
+
+.user-logo {
+  font-size: 20px;
 }
 
 @media only screen and (max-width: 700px) {
