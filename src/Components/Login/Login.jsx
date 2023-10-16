@@ -33,7 +33,11 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
-        <Link to='/signup' > Sign Up </Link>
+        <div className="sign-up-content">
+          <small>Don't have account ?</small>
+          <Link to='/signup' className='link-item'><span className='m-3'>Sign Up</span> </Link>
+        </div>
+
       </div>
     </div>
   );

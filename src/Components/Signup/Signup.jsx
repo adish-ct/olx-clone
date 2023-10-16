@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Logo from '../../olx-logo.png';
 import './Signup.css';
+import { Link } from 'react-router-dom';
 
 export default function Signup() {
+
+  // create state for fetching username
+  const [username, setUsername] = useState('')
+  const getUsername = (e) => {
+    setUsername(e.target.value)
+  }
+
+  // create state for fetching email
+  const [email, setEmail] = useState('')
+  const getEmail = (event) => {
+    setEmail(event.target.value)
+  }
+
+
+
   return (
     <div>
       <div className="signupParentDiv">
@@ -16,7 +32,7 @@ export default function Signup() {
             type="text"
             id="fname"
             name="name"
-            defaultValue="John"
+            onChange={getUsername}
           />
           <br />
           <label htmlFor="fname">Email</label>
@@ -26,7 +42,7 @@ export default function Signup() {
             type="email"
             id="fname"
             name="email"
-            defaultValue="John"
+            onChange={getEmail}
           />
           <br />
           <label htmlFor="lname">Phone</label>
@@ -36,7 +52,6 @@ export default function Signup() {
             type="number"
             id="lname"
             name="phone"
-            defaultValue="Doe"
           />
           <br />
           <label htmlFor="lname">Password</label>
@@ -46,13 +61,14 @@ export default function Signup() {
             type="password"
             id="lname"
             name="password"
-            defaultValue="Doe"
           />
           <br />
           <br />
           <button>Signup</button>
         </form>
-        <a>Login</a>
+        <div className="d-flex gap-3 m-2">
+          <span>Have account ?</span><Link to='/login' className='link-item text-primary'>Login</Link>
+        </div>
       </div>
     </div>
   );

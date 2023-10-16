@@ -159,7 +159,7 @@
 }
 
 .link-item:hover {
-  color: rgb(183, 98, 8);
+  color: rgb(183, 98, 8) !important;
   border-bottom: 3px solid rgb(197, 196, 196);
 }
 
