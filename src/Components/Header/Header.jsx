@@ -57,20 +57,23 @@ function Header() {
         </div>
         <div className="loginPage ">
           {
-            user ? <div className='d-flex gap-2'> <span> {user.reloadUserInfo.displayName} </span> <span onClick={logout}> Logout </span></div>
+            user ? <div className='d-flex gap-3'> <span> {user.reloadUserInfo.displayName} </span> <span className='link-item logout-button' onClick={logout}> Logout </span></div>
               :
               <Link to='/login' className='link-item' > <span><BiUserCircle className='user-logo' /></span> <span>Login</span></Link>
           }
 
         </div>
 
-        <div className="sellMenu">
-          <SellButton></SellButton>
-          <div className="sellMenuContent">
-            <SellButtonPlus></SellButtonPlus>
-            <span>SELL</span>
+        <Link to='/create'>
+          <div className="sellMenu" >
+            <SellButton></SellButton>
+            <div className="sellMenuContent">
+              <SellButtonPlus></SellButtonPlus>
+              <span>SELL</span>
+            </div>
           </div>
-        </div>
+        </Link>
+
       </div>
     </div>
   );

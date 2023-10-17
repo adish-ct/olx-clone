@@ -28,6 +28,7 @@ function Login() {
   const submitLoginForm = async (e) => {
     e.preventDefault()
     const userCredential = await signInWithEmailAndPassword(firebase.auth, email, password);
+
     // Access the user information
     const user = userCredential.user;
     console.log(user);
@@ -35,7 +36,6 @@ function Login() {
     // Now you can use the user object if needed
     console.log('Logged in user:', user);
     navigate('/');
-
   }
 
   return (
@@ -43,22 +43,22 @@ function Login() {
       <div className="loginParentDiv">
         <img width="200px" height="200px" src={Logo} />
         <form>
-          <label htmlFor="fname">Email</label>
+          <label htmlFor="email">Email</label>
           <br />
           <input
             className="input"
             type="email"
-            id="fname"
+            id="email"
             name="email"
             onChange={getEmail}
           />
           <br />
-          <label htmlFor="lname">Password</label>
+          <label htmlFor="password">Password</label>
           <br />
           <input
             className="input"
             type="password"
-            id="lname"
+            id="password"
             name="password"
             onChange={getPassword}
           />
@@ -70,7 +70,6 @@ function Login() {
           <small>Don't have account ?</small>
           <Link to='/signup' className='link-item'><span className='m-3'>Sign Up</span> </Link>
         </div>
-
       </div>
     </div>
   );
