@@ -1,15 +1,13 @@
 import React, { useContext, useState } from 'react';
-
 import Logo from '../../olx-logo.png';
 import './Signup.css';
 import { Link } from 'react-router-dom';
-import { click } from '@testing-library/user-event/dist/click';
-import { FirebaseContext } from '../../Store/FirebaseContext';
 
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../../firebase-config';
 
 export default function Signup() {
 
-  const { firebase } = useContext(FirebaseContext)
 
   // create state for fetching username
   const [username, setUsername] = useState('')
@@ -35,9 +33,20 @@ export default function Signup() {
     setPassword(event.target.value)
   }
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault()
-    console.log(firebase);
+    // check this section auth is not getting
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+
   }
 
 
@@ -97,3 +106,44 @@ export default function Signup() {
     </div>
   );
 }
+
+
+
+// import React, { useState, useContext } from "react";
+// import { useNavigate, Link } from "react-router-dom";
+
+// import Logo from "../../olx-logo.png";
+// import "./Signup.css";
+// import { FirebaseContext } from "../../store/Context";
+
+// export default function Signup() {
+//   const [username, setUsername] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [phone, setPhone] = useState("");
+//   const [password, setPassword] = useState("");
+
+//   const navigate = useNavigate();
+//   const { firebase } = useContext(FirebaseContext);
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     firebase
+//       .auth()
+//       .createUserWithEmailAndPassword(email, password)
+//       .then((result) => {
+//         result.user.updateProfile({ displayName: username }).then(() => {
+//              firebase
+//              .firestore()
+//   .collection("users")
+//   .add({
+//     id: result.user.uid,
+//     username: username,
+//     phone: phone,
+//   })
+//   .then(() => {
+//     navigate("/login");
+//   });
+// });
+// });
+// };
+//  …

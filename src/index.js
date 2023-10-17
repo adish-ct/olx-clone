@@ -1,26 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import App from "./App";
-import { FirebaseContext } from "./Store/FirebaseContext";
-import firebase from "./Firebase/config";
+import { BrowserRouter as Router } from "react-router-dom";
+import { FirebaseContext } from "./store/Context";
 
-// import Context from "./Store/FirebaseContext";
-
-ReactDOM.render(
-  <FirebaseContext.Provider value={{ firebase }}>
-    <App />
-  </FirebaseContext.Provider>,
-  document.getElementById("root")
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <FirebaseContext.Provider>
+      <Router>
+        <App />
+      </Router>
+    </FirebaseContext.Provider>
+  </React.StrictMode>
 );
-
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import "./index.css";
-// import App from "./App";
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <React.StrictMode>
-//       <App />
-//   </React.StrictMode>
-// );

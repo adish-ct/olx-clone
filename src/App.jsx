@@ -9,13 +9,13 @@ import SignupPage from "./Pages/SignupPage";
 function App() {
   return (
     <div>
-      <Router>
-        <Routes>
-          <Route exact element={<Home />} path="/" />
-          <Route exact element={<SignupPage />} path="/signup" />
-          <Route exact element={<LoginPage />} path="/login" />
-        </Routes>
-      </Router>
+      {/* <Router> */}
+      <Routes>
+        <Route exact element={<Home />} path="/" />
+        <Route exact element={<SignupPage />} path="/signup" />
+        <Route exact element={<LoginPage />} path="/login" />
+      </Routes>
+      {/* </Router> */}
     </div>
   );
 }
