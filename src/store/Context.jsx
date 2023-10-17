@@ -45,12 +45,13 @@ export const FirebaseProvider = ({ children }) => {
         app,
         auth,
         firestore,
-        // Add more Firebase-related values if needed
     });
+    console.log('Firebase instance in context:', firebaseInstance);
 
     return (
         <FirebaseContext.Provider value={firebaseInstance}>
             {children}
+            console.log(firebaseInstance);
         </FirebaseContext.Provider>
     );
 };

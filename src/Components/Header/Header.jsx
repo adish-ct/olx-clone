@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './Header.css';
 import OlxLogo from '../../assets/OlxLogo';
@@ -6,9 +6,29 @@ import Search from '../../assets/Search';
 import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BiUserCircle } from 'react-icons/bi';
+import { AuthContext } from '../../store/Context';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase-config';
+
+
 function Header() {
+
+  const navigate = useNavigate()
+  const { user, setUser } = useContext(AuthContext)
+  console.log();
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null)
+      navigate('/')
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -36,8 +56,12 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage ">
-          <Link to='/login' className='link-item' > <span><BiUserCircle className='user-logo' /></span> <span>Login</span></Link>
-      
+          {
+            user ? <div className='d-flex gap-2'> <span> {user.reloadUserInfo.displayName} </span> <span onClick={logout}> Logout </span></div>
+              :
+              <Link to='/login' className='link-item' > <span><BiUserCircle className='user-logo' /></span> <span>Login</span></Link>
+          }
+
         </div>
 
         <div className="sellMenu">

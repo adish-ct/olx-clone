@@ -8,7 +8,10 @@ import { FirebaseContext } from '../../store/Context';
 
 function Login() {
 
-  const { firebase } = useContext(FirebaseContext);
+  // In the component where submitLoginForm is defined
+  const firebase = useContext(FirebaseContext);
+  console.log(firebase);
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('')
@@ -24,25 +27,15 @@ function Login() {
   // logic for login form submit
   const submitLoginForm = async (e) => {
     e.preventDefault()
-    try {
-      const userCredential = await signInWithEmailAndPassword(firebase.auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(firebase.auth, email, password);
+    // Access the user information
+    const user = userCredential.user;
+    console.log(user);
 
-      // using .then promise
-      // signInWithEmailAndPassword(firebase.auth, email, password).then((userCredential) => {
-      //   const user = userCredential.user;
-      //   console.log(user);
-      //   navigate('/')
-      // })
+    // Now you can use the user object if needed
+    console.log('Logged in user:', user);
+    navigate('/');
 
-      // Access the user information
-      const user = userCredential.user;
-
-      // Now you can use the user object if needed
-      console.log('Logged in user:', user);
-      navigate('/');
-    } catch {
-      alert("username and password is not matching.");
-    }
   }
 
   return (
