@@ -1,10 +1,50 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import Logo from '../../olx-logo.png';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FirebaseContext } from '../../store/Context';
 
 function Login() {
+
+  const { firebase } = useContext(FirebaseContext);
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  // getting email
+  const getEmail = (event) => setEmail(event.target.value);
+
+  // getting password
+  const getPassword = (event) => setPassword(event.target.value);
+
+
+  // logic for login form submit
+  const submitLoginForm = async (e) => {
+    e.preventDefault()
+    try {
+      const userCredential = await signInWithEmailAndPassword(firebase.auth, email, password);
+
+      // using .then promise
+      // signInWithEmailAndPassword(firebase.auth, email, password).then((userCredential) => {
+      //   const user = userCredential.user;
+      //   console.log(user);
+      //   navigate('/')
+      // })
+
+      // Access the user information
+      const user = userCredential.user;
+
+      // Now you can use the user object if needed
+      console.log('Logged in user:', user);
+      navigate('/');
+    } catch {
+      alert("username and password is not matching.");
+    }
+  }
+
   return (
     <div>
       <div className="loginParentDiv">
@@ -17,7 +57,7 @@ function Login() {
             type="email"
             id="fname"
             name="email"
-            defaultValue="John"
+            onChange={getEmail}
           />
           <br />
           <label htmlFor="lname">Password</label>
@@ -27,11 +67,11 @@ function Login() {
             type="password"
             id="lname"
             name="password"
-            defaultValue="Doe"
+            onChange={getPassword}
           />
           <br />
           <br />
-          <button>Login</button>
+          <button onClick={submitLoginForm} >Login</button>
         </form>
         <div className="sign-up-content">
           <small>Don't have account ?</small>

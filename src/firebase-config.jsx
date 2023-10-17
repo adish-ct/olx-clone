@@ -13,7 +13,7 @@ const firebaseConfig = {
 
 // Initialize Firebase and making an instance
 const app = initializeApp(firebaseConfig);
-// we can use in various components
-export const auth = getAuth(app)
+const auth = getAuth(app);
 const firestore = getFirestore(app);
-export { app, firestore };
+
+export { app, auth, firestore };

@@ -1,21 +1,20 @@
-import React from "react";
-import "./App.css";
+import React, { useContext, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home';
+import LoginPage from './Pages/LoginPage';
+import SignupPage from './Pages/SignupPage';
+import { AuthContext, FirebaseContext } from './store/Context';
 
-import Home from "./Pages/Home";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import LoginPage from "./Pages/LoginPage";
-import SignupPage from "./Pages/SignupPage";
 
 function App() {
+
   return (
     <div>
-      {/* <Router> */}
       <Routes>
-        <Route exact element={<Home />} path="/" />
-        <Route exact element={<SignupPage />} path="/signup" />
-        <Route exact element={<LoginPage />} path="/login" />
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
-      {/* </Router> */}
     </div>
   );
 }
