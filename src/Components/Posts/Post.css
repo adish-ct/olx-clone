@@ -36,7 +36,7 @@
   padding: 13px;
   max-width: 222px;
   width: 222px;
-  height: 270px;
+  height: 350px;
   display: inline-block;
   cursor: pointer;
 }
@@ -49,6 +49,7 @@
 
 .card .image {
   display: flex;
+  height: 180px;
   justify-content: center;
   align-items: center;
 }

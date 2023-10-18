@@ -4,11 +4,21 @@ import Header from "../Header/Header";
 import { AuthContext, FirebaseContext } from "../../store/Context";
 import { ref, getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   // use context for store data and user
   const { storage, firestore } = useContext(FirebaseContext);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
+  const date = new Date().toISOString()
+  const createdAtDate = new Date(date);
+  // Format the date to display only the date part
+  const formattedDate = createdAtDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   const [name, setName] = useState("");
   const getName = (event) => setName(event.target.value);
@@ -40,9 +50,10 @@ const Create = () => {
       price,
       url,
       userId: user.uid,
-      createdAt: serverTimestamp()
+      createdAt: formattedDate
     })
     console.log("document added :", docRef.id);
+    navigate('/')
   };
 
   return (
@@ -87,7 +98,7 @@ const Create = () => {
             alt="Posts"
             width="200px"
             height="200px"
-            src={image ? URL.createObjectURL(image) : ""}
+            src={image ? URL.createObjectURL(image) : "Loading"}
           ></img>
           <form>
             <br />
