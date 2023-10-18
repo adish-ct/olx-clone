@@ -3,10 +3,11 @@ import "./Create.css";
 import Header from "../Header/Header";
 import { AuthContext, FirebaseContext } from "../../store/Context";
 import { ref, getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 const Create = () => {
   // use context for store data and user
-  const { storage } = useContext(FirebaseContext);
+  const { storage, firestore } = useContext(FirebaseContext);
   const { user } = useContext(AuthContext);
 
   const [name, setName] = useState("");
@@ -32,7 +33,16 @@ const Create = () => {
     // Get the download URL
     const url = await getDownloadURL(storageRef);
     console.log(url);
-
+    // product adding to firestore
+    const docRef = await addDoc(collection(firestore, 'products'), {
+      name,
+      category,
+      price,
+      url,
+      userId: user.uid,
+      createdAt: serverTimestamp()
+    })
+    console.log("document added :", docRef.id);
   };
 
   return (
