@@ -9,7 +9,7 @@ import { PostContext } from "../../store/PostContext";
 
 function Posts() {
   const { firestore } = useContext(FirebaseContext);
-  const { setPostDetails } = useContext(PostContext)
+  const { postDetails, setPostDetails } = useContext(PostContext)
   const navigate = useNavigate()
 
   // there is a possible to multiple data for a user
@@ -31,10 +31,10 @@ function Posts() {
     fetchData();
   }, [firestore]);
 
-  const clickViewPost = () => {
-    
-    navigate('/view-product')
-  }
+  const clickViewPost = (product) => {
+    setPostDetails(product);
+    navigate('/view-product');
+  };
   return (
     <div className="postParentDiv">
       <div className="moreView">
@@ -45,7 +45,7 @@ function Posts() {
 
         <div className="cards">
           {products.map((product) => (
-            <div className="card" onClick={clickViewPost}>
+            <div className="card" key={product.id} onClick={() => clickViewPost(product)}>
               <div className="favorite">
                 <Heart></Heart>
               </div>
