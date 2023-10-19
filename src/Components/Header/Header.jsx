@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import './Header.css';
 import OlxLogo from '../../assets/OlxLogo';
@@ -29,16 +29,21 @@ function Header() {
     }
   }
 
+  const [isOpen, setIsOpen] = useState(false)
+  const handleLanguage = () => {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
         <div className="brandName">
-          <OlxLogo></OlxLogo>
+          <Link to='/'><OlxLogo /></Link>
         </div>
         <div className="placeSearch">
           <Search></Search>
           <input type="text" />
-          <Arrow></Arrow>
+          <Arrow />
         </div>
         <div className="productSearch">
           <div className="input">
@@ -51,9 +56,21 @@ function Header() {
             <Search color="#ffffff"></Search>
           </div>
         </div>
-        <div className="language">
+        <div className="language" onClick={handleLanguage}>
           <span> ENGLISH </span>
-          <Arrow></Arrow>
+          <div className="language-control" style={{ position: 'relative' }}>
+            <Arrow />
+            {isOpen && (
+              <ul className="dropdown-menu" style={{
+                position: 'absolute',
+
+              }}>
+                <li>Hindi</li>
+                <li>Malayalam</li>
+                <li>Tamil</li>
+              </ul>
+            )}
+          </div>
         </div>
         <div className="loginPage ">
           {
